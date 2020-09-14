@@ -71,6 +71,4 @@ async function allProductsList() {
     productCardBody.appendChild(productCardTitle);
     productCardBody.appendChild(productCardDescription);
     productCardBody.appendChild(productCardPrice);
-
-
 }    
