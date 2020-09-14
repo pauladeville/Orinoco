@@ -22,7 +22,7 @@ function getProducts () {
         let products = response.json();
         return products;
     })
-    .catch(functio-n(error) {
+    .catch(function(error) {
         console.log(error);
     });
 }
@@ -31,12 +31,18 @@ function getProducts () {
 async function allProductsList() {
     const products = getProducts();
 
-//Création d'une card Bootstrap pour chaque produit destinée à les présenter sur la page HTML
+//Déclaration des variables pour chaque attribut des produits
+    let productName = product.name;
+    let productID = product._id; // Comment l'appeler autrement ?
+    let productPrice = product.productPrice;
+    let productDescription = product.description;
+    let productImg = product.imageURL;
 
-        // for each "product" =>     
+//Création d'une card Bootstrap pour chaque produit
+    let productSection = document.getElementById("liste-produit");
 
-    let productSection = document.createElement("section");
-        productSection.setAttribute("class", "product-section");
+        // for each "product"?     
+
     let productColumn = document.createElement("div");
         productColumn.setAttribute("class", "col-12 col-md-4");
     let productCard = document.createElement("div");
@@ -49,10 +55,13 @@ async function allProductsList() {
         productCardBody.setAttribute("class", "card-body");
     let productCardTitle = document.createElement("h2");
         productCardTitle.setAttribute("class", "card-title");
+        productCardTitle.innerHTML = productName;
     let productCardDescription = document.createElement("p");
         productCardDescription.setAttribute("class", "card-text");
+        productCardDescription.innerHTML = "productDescription";
     let productCardPrice = document.createElement("p");
         productCardPrice.setAttribute("class", "card-text text-right");
+        productCardPrice.innerHTML = productPrice / 100 + " €";
 
 //Hiérarchisation des éléments figurant dans les cards
     productSection.appendChild(productColumn);
@@ -63,9 +72,5 @@ async function allProductsList() {
     productCardBody.appendChild(productCardDescription);
     productCardBody.appendChild(productCardPrice);
 
-//Déclaration des variables pour chaque attribut des produits
-    let productName = product.name;
-    let productID = product._id;
-    let productPrice = product.productPrice;
-    let productDescription = product.description;
-    let productImg = product.imageURL;
+
+}    
