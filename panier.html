@@ -19,10 +19,10 @@
               <a href="index.html" class="navbar-brand"><img src="images/logo.JPG" alt="Logo de l'eshop Orinoco" height="50" /></a> 
               <ul class="list-inline mt-3">
                 <li class="list-inline-item">
-                  <a href="panier.html" class="btn btn-sm btn-light">Panier</a>
+                  <a href="panier.html" class="btn btn-light">Panier</a>
                 </li>
                 <li class="list-inline-item">
-                  <a href="mailto:contact@orinoco.com" class="btn btn-sm btn-light">Contact</a>
+                  <a href="mailto:contact@orinoco.com" class="btn btn-light">Contact</a>
                 </li>
               </ul>
             </nav>
@@ -31,32 +31,35 @@
       </div>
     </div>
 
-<!-- FORMULAIRE -->
+<!-- CONTAINER -->
+    <div class="container-fluid">
+      <div class="row mt-5">
 
-    <div class="container">
-      <div class="row my-5">
-        <div class="col col-md-6">
-          <p id="panier" class="px-4 py-4">Résumé de votre commande</p>
+<!-- RESUME COMMANDE -->
+        <div class="col-12 col-md-6">
+          <p id="panier" class="p-4 mx-5 mb-5">Résumé de votre commande</p>
         </div>
-        <div class="col col-md-6">
+
+<!-- FORMULAIRE -->
+        <div class="col-12 col-md-6 mb-5">
           <form>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label for="name">Votre nom</label>
                 <input type="text" class="form-control" id="name" placeholder="ex : Colette Lapin">
             </div>    
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label for="email">Votre email</label>
                 <input type="email" class="form-control" id="email" placeholder="ex : colette.lapin@mailbox.org">
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label for="adress">Votre adresse</label>
                 <input type="text" class="form-control" id="adress" placeholder="ex : 12 rue Rosa Parks ">
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label for="cp">Votre code postal</label>
                 <input type="number" class="form-control" id="cp" maxlength="5" placeholder="ex : 75001 ">
             </div>
-            <div class="form-group">
+            <div class="form-group mx-5">
                 <label for="city">Vode ville</label>
                 <select id="city" name="city" class="form-control" type="radio">
                   <option class="data-option0 d-none" value=""></option>
@@ -67,12 +70,13 @@
                   <option class="data-option5 d-none" value=""></option>
               </select>
             </div>
-            <button type="submit" class="btn btn-success form-control mt-4">Validez votre commande</button>
-            <a type="button" href="index.html" class="btn btn-light form-control my-3">Continuez vos achats</a>
+            <div class="mx-5">
+              <button type="submit" class="btn btn-success form-control mt-4">Validez votre commande</button>
+              <a type="button" href="index.html" class="btn btn-light form-control my-3 ">Continuez vos achats</a>
+            </div>
           </form>
         </div>
       </div>
-        
     </div>    
 
     <script src="js/index.js"></script>
