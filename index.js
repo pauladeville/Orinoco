@@ -1,5 +1,4 @@
-alert("coucou");
-const productSoldType = "furniture"; //au choix furniture, cameras, teddies
+const productSoldType = "cameras"; //au choix furniture, cameras, teddies
 
 //Récupérer la liste des produits
 function getProducts () {
@@ -12,52 +11,15 @@ function getProducts () {
     }
     fetch(url, options)
     .then(response => response.json())
-    .then(products => console.log(products))
+    .then(products => {
+        console.log(products);
+        for (let p = 0; p < products.length; p += 1) {
+            document.querySelector(".data-img" + p).setAttribute("src", products[p].imageUrl);
+            document.querySelector(".data-name" + p).textContent = products[p].name;
+            document.querySelector(".data-description" + p).textContent = products[p].description;
+            document.querySelector(".data-price" + p).textContent = `${products[p].price / 100} €`;
+        }
+    })
     .catch(error => console.log(error));
 };
 getProducts ();
-
-// //Construction de la liste des produits en vente
-// async function allProductsList() {
-
-// //Déclaration des variables pour chaque attribut des produits
-//     let productName = product.name;
-//     let productID = product._id; // Comment l'appeler autrement ?
-//     let productPrice = product.productPrice;
-//     let productDescription = product.description;
-//     let productImg = product.imageURL;
-
-// //Création d'une card Bootstrap pour chaque produit
-//     let productSection = document.getElementById("liste-produit");
-
-//         // for each "product"?
-
-//     let productColumn = document.createElement("div");
-//         productColumn.setAttribute("class", "col-12 col-md-4");
-//     let productCard = document.createElement("div");
-//         productCard.setAttribute("class", "card shadow-sm");
-//     let productCardImage = document.createElement("img");
-//         productCardImage.setAttribute("class", "card-img-top");
-//         productCardImage.setAttribute("src", productImg);
-//         productCardImage.setAttribute("alt", "Photo d'un " + productName);
-//     let productCardBody = document.createElement("div");
-//         productCardBody.setAttribute("class", "card-body");
-//     let productCardTitle = document.createElement("h2");
-//         productCardTitle.setAttribute("class", "card-title");
-//         productCardTitle.innerHTML = productName;
-//     let productCardDescription = document.createElement("p");
-//         productCardDescription.setAttribute("class", "card-text");
-//         productCardDescription.innerHTML = "productDescription";
-//     let productCardPrice = document.createElement("p");
-//         productCardPrice.setAttribute("class", "card-text text-right");
-//         productCardPrice.innerHTML = productPrice / 100 + " €";
-
-// //Hiérarchisation des éléments figurant dans les cards
-//     productSection.appendChild(productColumn);
-//     productColumn.appendChild(productCard);
-//     productCard.appendChild(productCardImage);
-//     productCard.appendChild(productCardBody);
-//     productCardBody.appendChild(productCardTitle);
-//     productCardBody.appendChild(productCardDescription);
-//     productCardBody.appendChild(productCardPrice);
-// }

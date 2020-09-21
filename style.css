@@ -1,3 +1,10 @@
+body {
+    background-color: #f9f6f8;
+}
 #nav-color {
     background-color: #F3E9F1;
+}
+#offre {
+    background-color: #deb1d5;
+    color: white;
 }
