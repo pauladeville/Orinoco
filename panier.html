@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Orinoco</title>
+    <meta name="description" content="Boutique en ligne de produits de qualité, livrés rapidement chez vous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+  <body>
+
+<!-- NAVIGATION -->
+    <div class="bg-light">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col" id="nav-color">
+            <nav class="navbar">
+              <a href="index.html" class="navbar-brand"><img src="images/logo.JPG" alt="Logo de l'eshop Orinoco" height="50" /></a> 
+              <ul class="list-inline mt-3">
+                <li class="list-inline-item">
+                  <a href="panier.html" class="btn btn-sm btn-light">Panier</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="mailto:contact@orinoco.com" class="btn btn-sm btn-light">Contact</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- FORMULAIRE -->
+
+    <div class="container">
+      <div class="row my-5">
+        <div class="col col-md-6">
+          <p id="panier" class="px-4 py-4">Résumé de votre commande</p>
+        </div>
+        <div class="col col-md-6">
+          <form>
+            <div class="form-group">
+                <label for="name">Votre nom</label>
+                <input type="text" class="form-control" id="name" placeholder="ex : Colette Lapin">
+            </div>    
+            <div class="form-group">
+                <label for="email">Votre email</label>
+                <input type="email" class="form-control" id="email" placeholder="ex : colette.lapin@mailbox.org">
+            </div>
+            <div class="form-group">
+                <label for="adress">Votre adresse</label>
+                <input type="text" class="form-control" id="adress" placeholder="ex : 12 rue Rosa Parks ">
+            </div>
+            <div class="form-group">
+                <label for="cp">Votre code postal</label>
+                <input type="number" class="form-control" id="cp" maxlength="5" placeholder="ex : 75001 ">
+            </div>
+            <div class="form-group">
+                <label for="city">Vode ville</label>
+                <select id="city" name="city" class="form-control" type="radio">
+                  <option class="data-option0 d-none" value=""></option>
+                  <option class="data-option1 d-none" value=""></option>
+                  <option class="data-option2 d-none" value=""></option>
+                  <option class="data-option3 d-none" value=""></option>
+                  <option class="data-option4 d-none" value=""></option>
+                  <option class="data-option5 d-none" value=""></option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-success form-control mt-4">Validez votre commande</button>
+            <a type="button" href="index.html" class="btn btn-light form-control my-3">Continuez vos achats</a>
+          </form>
+        </div>
+      </div>
+        
+    </div>    
+
+    <script src="js/index.js"></script>
+    <script src="js/panier.js"></script>
+
+  </body>
+</html>
