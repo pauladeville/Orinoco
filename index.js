@@ -1,8 +1,6 @@
-const productSoldType = "cameras"; //au choix furniture, cameras, teddies
-
 //Création de la fonction de récupération de la liste des produits
 function getProducts () {
-    let url = "http://localhost:3000/api/" + productSoldType;
+    let url = "http://localhost:3000/api/cameras";
     let options = {
         method: "GET",
         headers: {
@@ -19,8 +17,8 @@ function getProducts () {
             document.querySelector(".data-name" + p).textContent = products[p].name;
             document.querySelector(".data-description" + p).textContent = products[p].description;
             document.querySelector(".data-price" + p).textContent = `${products[p].price / 100} €`;
-            //Créer une URL personnalisée vers la page produit
-            document.querySelector(".data-img" + p).setAttribute("href", `produit/${products[p]._id}`);
+            //Transmission de l'ID produit avec l'URL cliquée
+            document.querySelector(".data-link" + p).setAttribute("href", `produit.html?id=${products[p]._id}`);
         }
     })
     .catch(error => console.log(error));
