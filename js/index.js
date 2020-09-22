@@ -1,4 +1,4 @@
-//Création de la fonction de récupération de la liste des produits
+//Récupération de la liste des produits
 function getProducts () {
     let url = "http://localhost:3000/api/cameras";
     let options = {
@@ -23,5 +23,9 @@ function getProducts () {
     })
     .catch(error => console.log(error));
 };
-//Appel de la fonction de récupération des produits
 getProducts ();
+
+//Ajout d'un objet local pour remplir le panier pendant la visite du site
+let panier = JSON.parse(localStorage.getItem("panier"));
+console.log(localStorage);
+
