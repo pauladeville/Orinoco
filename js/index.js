@@ -1,8 +1,8 @@
 //***** AFFICHAGE DES PRODUITS SUR LA HOME *****/
 
 //Récupération de la liste des produits
-function getProducts () {
-    let url = "http://localhost:3000/api/cameras";
+getProducts = () => {
+    let url = "http://localhost:3000/api/cameras/";
     let options = {
         method: "GET",
         headers: {
@@ -12,7 +12,6 @@ function getProducts () {
     fetch(url, options)
     .then(response => response.json())
     .then(products => {
-        console.log(products);
         //Personnalisation des cards de la home pour chaque produit du tableau
         for (let i = 0; i < products.length; i += 1) {
             document.querySelector(".data-img" + i).setAttribute("src", products[i].imageUrl);
@@ -26,4 +25,4 @@ function getProducts () {
     .catch(error => console.log(error));
 };
 //Appel de la fonction de récupération
-getProducts ();
+getProducts();

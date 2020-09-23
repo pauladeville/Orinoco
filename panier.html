@@ -38,8 +38,11 @@
 <!-- RESUME COMMANDE -->
         <div class="col-12 col-md-6">
           <div id="panier" class="p-4 mx-5 mb-5 display-5">
-            <h3>Résumé de votre commande</h3>
-            <div id="panier-liste" class="mt-5">Votre panier est vide</div>
+            <h3>Votre panier</h3>
+              <div id="panier-liste" class="mt-5">
+                <p id="panier-vide">Votre panier est vide</p>
+              </div>
+            <h3 id="prix-total" class="mt-5 text-right">0 € TTC</h3>
           </div>
         </div>
 
@@ -47,20 +50,20 @@
         <div class="col-12 col-md-6 mb-5">
           <form>
             <div class="form-group mx-5">
-                <label for="name">Votre prénom</label>
-                <input type="text" class="form-control" id="name" placeholder="ex : Colette">
+                <label for="firstName">Votre prénom</label>
+                <input type="text" class="form-control" id="firstName" placeholder="ex : Colette">
             </div>
             <div class="form-group mx-5">
-              <label for="surname">Votre nom</label>
-              <input type="text" class="form-control" id="surname" placeholder="ex : Lapin">
+              <label for="lastName">Votre nom</label>
+              <input type="text" class="form-control" id="lastName" placeholder="ex : Lapin">
           </div>   
             <div class="form-group mx-5">
                 <label for="email">Votre email</label>
                 <input type="email" class="form-control" id="email" placeholder="ex : colette.lapin@mailbox.org">
             </div>
             <div class="form-group mx-5">
-                <label for="adress">Votre adresse</label>
-                <input type="text" class="form-control" id="adress" placeholder="ex : 12 rue Rosa Parks ">
+                <label for="address">Votre adresse</label>
+                <input type="text" class="form-control" id="address" placeholder="ex : 12 rue Rosa Parks ">
             </div>
             <div class="form-group mx-5">
                 <label for="cp">Votre code postal</label>

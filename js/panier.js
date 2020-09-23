@@ -1,11 +1,12 @@
 //*****AFFICHAGE DU PANIER*****
 
 //Récupération de l'ID produit stocké via le bouton "Ajoutez au panier"
-var produitPanier = localStorage.getItem("ajoutPanier");
-console.log(produitPanier);
+var panier = localStorage.getItem("basketList");
+console.log(panier);
 
-function getProducts () {
-    let url = "http://localhost:3000/api/cameras";
+
+viewBasketContent = () => {
+    let url = `http://localhost:3000/api/cameras/`;
     let options = {
         method: "GET",
         headers: {
@@ -16,14 +17,16 @@ function getProducts () {
         .then(response => response.json())
         .then(products => {
             for (let product of products) {
-                console.log(product);
-                if (product._id == produitPanier) {
-                    document.querySelector("#panier-liste").textContent = product.name;
+                if (panier.includes(product._id)) {
+                    const basketItem = document.createElement("div");
+                    document.querySelector("#panier-liste").appendChild(basketItem);
+                    basketItem.innerHTML = `<strong>${product.name}</strong> - ${product.price / 100} €`;
+                    document.getElementById("panier-vide").textContent = " ";
                 }               
             }
         }
 )}
-getProducts ();
+viewBasketContent ();
 
 
 //*****GENERATION DES NOMS DE VILLES EN FONCTION DU CODE POSTAL*****

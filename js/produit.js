@@ -1,14 +1,11 @@
 //*****STOCKAGE DES DONNEES D'ACHAT *****/
 
-//Ajout d'un objet local pour remplir le panier pendant la visite du site
-let panier = JSON.parse(localStorage.getItem("panier"));
-// console.log(localStorage);
 
 
 //*****PERSONNALISATION DE LA PAGE PRODUIT******
 
 //Création de la fonction de personnalisation
-function viewProduct () {
+viewProduct = () => {
     let url = "http://localhost:3000/api/cameras";
     let options = {
         method: "GET",
@@ -21,7 +18,6 @@ function viewProduct () {
     .then(products => {
         for (let product of products) {
             //Récupération de l'URL contenant l'ID du produit
-            console.log(product);
             if (window.location.href.includes(product._id)) {
                 //Affichage des données pour chaque produit
                 document.getElementById("titre-produit").textContent = product.name;
@@ -34,8 +30,19 @@ function viewProduct () {
                     document.querySelector(".data-option" + opt).textContent = product.lenses[opt];
                 }
                 //Préparation du bouton "panier" en prévision de l'achat
-                document.getElementById("ajout-panier").addEventListener("click", function() {
-                    localStorage.setItem("ajoutPanier", products._id);
+                document.getElementById("ajout-panier").addEventListener("click", function(event) {
+                    //Vérifier s'il y a déjà un tableau dans le local storage de l'utilisateur (si oui, le décoder, sinon le créer)
+                    let ajoutPanier = localStorage.getItem("basketList");
+                    if(ajoutPanier === null) {
+                        ajoutPanier = [];
+                    } else {
+                        ajoutPanier = JSON.parse(ajoutPanier);
+                    };
+                    //Ajour au panier
+                    ajoutPanier.push(product._id);
+                    ajoutPanier = JSON.stringify(ajoutPanier);
+                    localStorage.setItem("basketList", ajoutPanier);
+                    console.log(localStorage);
                 });
             };
         }
