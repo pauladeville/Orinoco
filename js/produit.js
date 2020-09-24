@@ -1,10 +1,4 @@
-//*****STOCKAGE DES DONNEES D'ACHAT *****/
-
-
-
-//*****PERSONNALISATION DE LA PAGE PRODUIT******
-
-//Création de la fonction de personnalisation
+//Fonction de personnalisation de la page produit
 viewProduct = () => {
     let url = "http://localhost:3000/api/cameras";
     let options = {
@@ -42,7 +36,6 @@ viewProduct = () => {
                     ajoutPanier.push(product._id);
                     ajoutPanier = JSON.stringify(ajoutPanier);
                     localStorage.setItem("basketList", ajoutPanier);
-                    console.log(localStorage);
                 });
             };
         }
