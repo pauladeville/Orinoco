@@ -1,67 +1,82 @@
 //*****AFFICHAGE DU PANIER*****
 
-//Affichage du prix total
-let sum = 0;
+//Création du prix total
+let totalPrice = 0;
 
-//Récupérer les données du webstorage
-checkWebStorage = () => {
-    let basket = JSON.parse(localStorage.getItem("basketList"));
+//Création du panier
+createBasket = () => {
+    //Récupérer les données du webstorage
+    let basket = localStorage.getItem("basketList");
+    basket = JSON.parse(basket);
     console.log(basket);
+    //Si le panier est vide, l'afficher comme tel
     if (basket == null) {
         document.getElementById("panier-vide").textContent = "Votre panier est vide";
         document.getElementById("panier-liste").remove();
+    //Sinon afficher son contenu
     } else {
         for (let addedProduct of basket) {
+            //Match des ID dans le panier avec les cellules "quantité" du tableau produit à afficher. Si la ligne correspondante existe déjà (le produit a déjà été affiché), ajouter 1 dans la quantité
             if (document.querySelector(`td.data-${addedProduct._id}`)) {
                 document.querySelector(`td.data-${addedProduct._id}`).textContent ++;
-                sum = sum += addedProduct.price;
+                //Augmentation du prix total
+                totalPrice = totalPrice += addedProduct.price;
+            //Si le produit n'est pas encore affiché dans le panier (pas encore de cellule "quantité" avec son ID), créer la ligne produit dans le tableau
             } else {
                 const productLine = document.createElement("tr");
                 const productName = document.createElement("td");
                 const productPrice = document.createElement("td");
                 const productQuantity = document.createElement("td");
                 const productRemove = document.createElement("td");
+                //Hiérarchisation des informations à afficher
                 document.querySelector("table").appendChild(productLine);
                 productLine.appendChild(productName);
                 productLine.appendChild(productPrice);
                 productLine.appendChild(productQuantity);
                 productLine.appendChild(productRemove);
+                //Ajout du contenu pour chaque produit
                 productName.textContent = addedProduct.name;
-                sum = sum += addedProduct.price;
                 productPrice.textContent = `${addedProduct.price / 100} €`;
                 productQuantity.textContent = 1;
-                productQuantity.classList.add(`data-${addedProduct._id}`);productRemove.innerHTML = `<strong>X</strong>`;
+                productQuantity.classList.add(`data-${addedProduct._id}`);
+                //Augmentation du prix total
+                totalPrice = totalPrice += addedProduct.price;
+                //Création des X pour supprimer un produit
+                productRemove.innerHTML = `<strong>X</strong>`;
                 productRemove.classList.add("cursor-pointer");
+                //A chaque clic sur X, supprimer 1x le produit dans le panier et dans le prix total
                 productRemove.addEventListener("click", function() {
                     productQuantity.textContent --;
                     basket.splice(basket.indexOf(addedProduct), 1);
-                    sum = sum -= addedProduct.price;
-                    document.getElementById("prix-total").textContent = `${sum / 100} € TTC`;
+                    totalPrice = totalPrice -= addedProduct.price;
+                    document.getElementById("prix-total").textContent = `${totalPrice / 100} € TTC`;
+                    //S'il n'y a plus d'exemplaire d'un produit, supprimer sa ligne
                     if(productQuantity.textContent == 0) {
                         productLine.remove();
                     }
+                    //Si le panier est vidé, vider le localStorage
                     if(basket.length == 0) {
                         document.getElementById("panier-vide").textContent = "Votre panier est vide";
+                        document.getElementById("panier-liste").remove();
                     }
-                    console.log(basket);
+                    //Sauvegarde du panier dans le localStorage avec la nouvelle quantité
+                    basket = JSON.stringify(basket);
+                    localStorage.setItem("basketList", basket);
+                    basket = JSON.parse(basket);
                 })
             }
-            //Augmentation du prix total du panier
-            document.getElementById("prix-total").textContent = `${sum / 100} € TTC`;   
+            //Augmentation du prix total du panier à chaque ajout de produit
+            document.getElementById("prix-total").textContent = `${totalPrice / 100} € TTC`;   
         }
-    };        
+    };  
 };
-checkWebStorage();
+createBasket();
 
+//Bouton "vider le panier"
 document.getElementById("vider-panier").addEventListener("click", function() {
     localStorage.clear();
     location.reload();
 });
-
-
-
-
-
 
 
 
