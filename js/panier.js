@@ -1,15 +1,7 @@
 //*****AFFICHAGE DU PANIER*****
 
-// produit of panier
-// créer Div avec class data-ID
-// d-none
-// quantité 0
-
-// function fetch api
-// produit of produits
-// si data-id = produit id
-// remplir les infos name et price + ajouter +1 dans la quantité
-
+//Affichage du prix total
+let sum = 0;
 
 //Récupérer les données du webstorage
 checkWebStorage = () => {
@@ -22,38 +14,55 @@ checkWebStorage = () => {
         for (let addedProduct of basket) {
             if (document.querySelector(`td.data-${addedProduct._id}`)) {
                 document.querySelector(`td.data-${addedProduct._id}`).textContent ++;
+                sum = sum += addedProduct.price;
             } else {
                 const productLine = document.createElement("tr");
                 const productName = document.createElement("td");
                 const productPrice = document.createElement("td");
                 const productQuantity = document.createElement("td");
+                const productRemove = document.createElement("td");
                 document.querySelector("table").appendChild(productLine);
                 productLine.appendChild(productName);
                 productLine.appendChild(productPrice);
                 productLine.appendChild(productQuantity);
+                productLine.appendChild(productRemove);
                 productName.textContent = addedProduct.name;
+                sum = sum += addedProduct.price;
                 productPrice.textContent = `${addedProduct.price / 100} €`;
                 productQuantity.textContent = 1;
-                productQuantity.classList.add(`data-${addedProduct._id}`);
+                productQuantity.classList.add(`data-${addedProduct._id}`);productRemove.innerHTML = `<strong>X</strong>`;
+                productRemove.classList.add("cursor-pointer");
+                productRemove.addEventListener("click", function() {
+                    productQuantity.textContent --;
+                    basket.splice(basket.indexOf(addedProduct), 1);
+                    sum = sum -= addedProduct.price;
+                    document.getElementById("prix-total").textContent = `${sum / 100} € TTC`;
+                    if(productQuantity.textContent == 0) {
+                        productLine.remove();
+                    }
+                    if(basket.length == 0) {
+                        document.getElementById("panier-vide").textContent = "Votre panier est vide";
+                    }
+                    console.log(basket);
+                })
             }
+            //Augmentation du prix total du panier
+            document.getElementById("prix-total").textContent = `${sum / 100} € TTC`;   
         }
-
     };        
 };
 checkWebStorage();
 
-
-//         //Augmentation du prix total du panier
-//         sum = sum += product.price;
-// 
-//     //Affichage du prix total
-//     document.getElementById("prix-total").textContent = `${sum / 100} € TTC`;
-
-
-
 document.getElementById("vider-panier").addEventListener("click", function() {
     localStorage.clear();
+    location.reload();
 });
+
+
+
+
+
+
 
 
 //***** VALIDATION DU FORMULAIRE*****
