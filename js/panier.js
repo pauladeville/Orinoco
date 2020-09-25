@@ -1,57 +1,59 @@
 //*****AFFICHAGE DU PANIER*****
 
-//Préparation du prix total du panier
-let sum = 0;
+// produit of panier
+// créer Div avec class data-ID
+// d-none
+// quantité 0
+
+// function fetch api
+// produit of produits
+// si data-id = produit id
+// remplir les infos name et price + ajouter +1 dans la quantité
 
 
-//Affichage du panier
-viewBasketContent = () => {
-    let url = `http://localhost:3000/api/cameras/`;
-    let options = {
-        method: "GET",
-        headers: {
-            "Content-type": "application/JSON"
+//Récupérer les données du webstorage
+checkWebStorage = () => {
+    let basket = JSON.parse(localStorage.getItem("basketList"));
+    console.log(basket);
+    if (basket == null) {
+        document.getElementById("panier-vide").textContent = "Votre panier est vide";
+        document.getElementById("panier-liste").remove();
+    } else {
+        for (let addedProduct of basket) {
+            if (document.querySelector(`td.data-${addedProduct._id}`)) {
+                document.querySelector(`td.data-${addedProduct._id}`).textContent ++;
+            } else {
+                const productLine = document.createElement("tr");
+                const productName = document.createElement("td");
+                const productPrice = document.createElement("td");
+                const productQuantity = document.createElement("td");
+                document.querySelector("table").appendChild(productLine);
+                productLine.appendChild(productName);
+                productLine.appendChild(productPrice);
+                productLine.appendChild(productQuantity);
+                productName.textContent = addedProduct.name;
+                productPrice.textContent = `${addedProduct.price / 100} €`;
+                productQuantity.textContent = 1;
+                productQuantity.classList.add(`data-${addedProduct._id}`);
+            }
         }
-    }
-    fetch(url, options)
-        .then(response => response.json())
-        .then(products => {
-            for (let product of products) {
-                const produitPanier = document.createElement("div");
-                document.querySelector("#panier-liste").appendChild(produitPanier);
-                produitPanier.classList.add(`data-${product._id}`, "d-none");
-                produitPanier.innerHTML = `<p><strong>${product.name}</strong> - ${product.price / 100} €</p>`;
-            };
-        }  
-)}
-viewBasketContent ();
 
-document.getElementById("vider-panier").addEventListener("click", function() {
-    localStorage.clear();
-    location.reload();
-});
+    };        
+};
+checkWebStorage();
 
-//Récupération de l'ID produit stocké via le bouton "Ajoutez au panier"
-// let panier = JSON.parse(localStorage.getItem("basketList"));
-// console.log(panier);
-//     if (panier == null) {
-//         document.getElementById("panier-vide").textContent = "Votre panier est vide";
-//         document.getElementById("panier-liste").remove();
-//     } else {
-//         for (let addedProduct of panier) {
-//             console.log(addedProduct);
-//             document.getElementsByClassName("data-" + addedProduct).classList.replace("d-none", "d-block");
-//         }
-//     };        
-//         ajouter 1 dans la quantité
-//         mettre à jour le prix
-//         mettre à jour le total
-// 
+
 //         //Augmentation du prix total du panier
 //         sum = sum += product.price;
 // 
 //     //Affichage du prix total
 //     document.getElementById("prix-total").textContent = `${sum / 100} € TTC`;
+
+
+
+document.getElementById("vider-panier").addEventListener("click", function() {
+    localStorage.clear();
+});
 
 
 //***** VALIDATION DU FORMULAIRE*****
