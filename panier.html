@@ -51,41 +51,41 @@
         <div class="col-12 col-md-6 mb-5">
           <form>
             <div class="form-group mx-5">
-                <label for="firstName">Votre prénom</label>
-                <input type="text" class="form-control" id="firstName" placeholder="ex : Colette" required>
-                <small></small>
+                <label for="first-name">Votre prénom</label>
+                <input type="text" class="form-control" id="first-name" placeholder="ex : Colette">
+                <small id="invalid-first-name" class="text-danger"></small>
             </div>
             <div class="form-group mx-5">
-              <label for="lastName">Votre nom</label>
-              <input type="text" class="form-control" id="lastName" placeholder="ex : Lapin" required>
-              <small></small>
-          </div>   
+              <label for="surname">Votre nom</label>
+              <input type="text" class="form-control" id="surname" placeholder="ex : Lapin">
+              <small id="invalid-surname" class="text-danger"></small>
+            </div>   
             <div class="form-group mx-5">
                 <label for="email">Votre email</label>
-                <input type="email" class="form-control" id="email" placeholder="ex : colette.lapin@mailbox.org" required >
-                <small></small>
+                <input type="email" class="form-control" id="email" placeholder="ex : colette.lapin@mailbox.org">
+                <small id="invalid-email" class="text-danger"></small>
             </div>
             <div class="form-group mx-5">
                 <label for="address">Votre adresse</label>
-                <input type="text" class="form-control" id="address" placeholder="ex : 12 rue Rosa Parks " required>
-                <small></small>
+                <input type="text" class="form-control" id="address" placeholder="ex : 12 rue Rosa Parks ">
+                <small id="invalid-address" class="text-danger"></small>
             </div>
             <div class="form-group mx-5">
                 <label for="cp">Votre code postal</label>
-                <input type="number" class="form-control" id="cp" maxlength="5" placeholder="ex : 75001 " required>
-                <small></small>
+                <input type="number" class="form-control" id="cp" maxlength="5" placeholder="ex : 75001 ">
+                <small id="invalid-cp" class="text-danger"></small>
             </div>
             <div class="form-group mx-5">
               <label for="city">Votre ville</label>
                 <select id="city" name="city" class="form-control" type="radio">
-                  <option class="data-option0 d-none" name="city" value="" required></option>
+                  <option class="data-option0 d-none" name="city" value=""></option>
                   <option class="data-option1 d-none" name="city" value=""></option>
                   <option class="data-option2 d-none" name="city" value=""></option>
                   <option class="data-option3 d-none" name="city" value=""></option>
                   <option class="data-option4 d-none" name="city" value=""></option>
                   <option class="data-option5 d-none" name="city" value=""></option>
                 </select>
-                <small></small>  
+                <small id="invalid-city" class="text-danger"></small>
             </div>
             <div class="mx-5">
               <button id="submit" type="submit" class="btn btn-success form-control mt-4">Validez votre commande</button>
