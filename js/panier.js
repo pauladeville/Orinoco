@@ -8,7 +8,6 @@ createBasket = () => {
     //Récupérer les données du webstorage
     let basket = localStorage.getItem("basketList");
     basket = JSON.parse(basket);
-    console.log(basket);
     //Si le panier est vide, l'afficher comme tel
     if (basket == null) {
         document.getElementById("panier-vide").textContent = "Votre panier est vide";
@@ -63,11 +62,15 @@ createBasket = () => {
                     basket = JSON.stringify(basket);
                     localStorage.setItem("basketList", basket);
                     basket = JSON.parse(basket);
+                    //Mise à jour du prix total dans le localStorage (en prévision de la page de confirmation)
+                    localStorage.setItem("confirmationPrice", totalPrice);
                 })
             }
             //Augmentation du prix total du panier à chaque ajout de produit
             document.getElementById("prix-total").textContent = `${totalPrice / 100} € TTC`;   
         }
+        //Sauvegarde du prix total dans le localStorage pour la page de confirmation
+        localStorage.setItem("confirmationPrice", totalPrice);
     };  
 };
 createBasket();
@@ -85,7 +88,7 @@ document.getElementById("vider-panier").addEventListener("click", function() {
 //Instruction des regExp
 let checkString = /[a-zA-Z]/;
 let checkNumber = /[0-9]/;
-let checkMail = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/
+let checkMail = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$/;
 let checkSpecialCharacter = /[§!@#$%^&*();.?":{}|<>]/;
 
 let inputFirstName = document.getElementById("first-name");
@@ -116,7 +119,7 @@ inputCp.addEventListener("change", function() {
         })
         .catch( err =>
             console.log("Erreur :" + err)
-        )
+        );
 });
 
 //Validation du champs du formulaire
@@ -171,15 +174,15 @@ checkBasket = () => {
     }    
 }
 
-let contactUser;
-let productsOrdered = [];
+let contact;
+let products = [];
 
 //Création de l'objet à envoyer au clic sur le formulaire
 document.getElementById("submit").addEventListener("click", function(event) {
     event.preventDefault();
     //Si formulaire et panier OK, création de l'objet "coordonnées" du client
     if (checkInput() !== false && checkBasket() == true) {
-        contactUser = {
+        contact = {
             firstName: inputFirstName.value,
             lastName: inputSurname.value,
             address: inputAddress.value,
@@ -190,12 +193,12 @@ document.getElementById("submit").addEventListener("click", function(event) {
         let basketFinal = localStorage.getItem("basketList");
         basketFinal = JSON.parse(basketFinal);
         for (let product of basketFinal) {
-            productsOrdered.push(product._id)
+            products.push(product._id);
         }
         //Ajout des éléments dans l'objet destiné à l'API
-        let dataToSend = {contactUser, productsOrdered};
-        console.log(dataToSend);
+        let dataToSend = {contact, products};
         sendOrder(dataToSend);
+        window.location.href = "confirmation.html";
     }
 });
 
@@ -207,12 +210,13 @@ sendOrder = (objectRequest) => {
         body: JSON.stringify(objectRequest),
         headers: {
             "Content-type": "application/JSON"
-        },
+        }
     }
     fetch(url, options)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        let orderReference = data.orderId;
+        localStorage.setItem("reference", orderReference);
     })
     .catch(error => console.log(error));
 };

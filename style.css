@@ -7,7 +7,7 @@ body {
 #bandeau {
     background-color: #ecd5e8;
 }
-#panier {
+.bloc-info {
     background-color: white;
     border-radius: 5px;
 }

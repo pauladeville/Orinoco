@@ -23,8 +23,9 @@ viewProduct = () => {
             document.querySelector(".data-option" + opt).classList.replace("d-none", "d-block");
             document.querySelector(".data-option" + opt).textContent = product.lenses[opt];
         }
-        //PREPARATION DU BOUTON PANIER
+        //Préparation du bouton "Ajouter au panier"
         document.getElementById("ajout-panier").addEventListener("click", function() {
+            //Si aucun panier n'existe, le créer, sinon, y ajouter le produit
             let addToBasket = localStorage.getItem("basketList");
             if(addToBasket === null) {
                 addToBasket = [];
