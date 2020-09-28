@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../style.css">
+    <title>Orinoco</title>
+    <meta name="description" content="Boutique en ligne de produits de qualité, livrés rapidement chez vous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+  <body>
+
+<!-- NAVIGATION -->
+    <div class="bg-light">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col" id="nav-color">
+            <nav class="navbar">
+              <a href="index.html" class="navbar-brand"><img src="../images/logo.JPG" alt="Logo de l'eshop Orinoco" height="50" /></a> 
+              <ul class="list-inline mt-3">
+                <li class="list-inline-item">
+                  <a href="panier.html" class="btn btn-light">Panier</a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="mailto:contact@orinoco.com" class="btn btn-sm btn-light">Contact</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- BANDEAU NOM / PRIX -->
+    <div id="bandeau" class="jumbotron">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col">
+            <h1 id="titre-produit"></h1>
+          </div>
+          <div class="col">
+            <p id="prix-produit" class="text-right">Prix</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- PHOTO, DETAILS ET OPTIONS -->
+    <div class="container-fluid">
+        <div class="row mx-5">
+            <div class="col-12 col-lg-8">
+                <img id="img-produit" src="../images/loading.jpg" class="img-fluid max-width:100% mb-4" alt="">
+            </div>
+            <div class="col-12 col-lg-4">
+                <p id="description-produit"></p><br />
+                <div class="form-group">
+                    <label for="options" class="display-5 font-weight-bold text-uppercase">Choix de lentilles :</label>
+                    <select id="options" name="options" class="form-control" type="radio">
+                        <option class="data-option0 d-none" value="1"></option>
+                        <option class="data-option1 d-none" value="2"></option>
+                        <option class="data-option2 d-none" value="3"></option>
+                    </select>
+                </div>
+                <a class="btn btn-block btn-light my-3" id="ajout-panier" href="panier.html">Ajoutez au panier</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/produit.js"></script>
+
+  </body>
+</html>
