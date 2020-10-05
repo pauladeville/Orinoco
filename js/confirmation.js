@@ -1,4 +1,3 @@
-
 let confirmationInfo = localStorage.getItem("reference");
 console.log(confirmationInfo);
 document.getElementById("reference-commande").textContent = confirmationInfo;

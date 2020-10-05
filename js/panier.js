@@ -217,6 +217,7 @@ sendOrder = (objectRequest) => {
     .then(data => {
         let orderReference = data.orderId;
         localStorage.setItem("reference", orderReference);
+        console.log(localStorage);
     })
     .catch(error => console.log(error));
 };
